@@ -20,15 +20,17 @@ For images, you'd just use UIImage; you'd set stuff like:
   * UIImage is usually embedded under `UIImageView()`
 
 For multithreading, the syntax to dispatch a non-main thread is as follows:
-    `let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)`
-    `dispatch_async(dispatch_get_global_queue(qos, 0) {
+```swift
+let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+    dispatch_async(dispatch_get_global_queue(qos, 0) {
 				//closure of async stuff to do here
 				dispatch_async(dispatch_get_main_queue()) { //get back to the main thread
 					 //stuff to do in main thread here
 				}
-     })`
+     })
+```
 
 Basically, you'd just use `dispatch_async` and specify the kind of queue you want and shove the code you want executed in the form of a closure.  If you'd like to get back to the main queue, just explicitly call it from the auxiliary queue.
 
 ## Demo
-!(Demo)[saturn_demo.gif]
+![Demo](saturn_demo.gif)
